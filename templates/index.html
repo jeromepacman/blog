@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="bloc d-bloc b-parallax" id="bloc-1">
+	<div class="parallax bg-header">
+	</div>
+	<div class="container bloc-lg flexy">
+		{% for obj in object_list %}
+		<div class="row row-style voffset-clear-xs no-gutters voffset">
+			<div class="col-lg-12">
+				<div class="card card-style">
+					<div class="card-header">
+						<h3 class="mg-clear text-lg-center text-sm-center float-none text-center">
+							{{ obj.title }}
+						</h3>
+						<h6 class="mg-clear text-lg-center text-sm-center float-none text-center">
+							{{ obj.timestamp|timesince }} ago
+						</h6>
+					</div>
+					<div class="card-body">
+						<img src="{{ obj.image.url }}" class="img-fluid mx-auto d-block img-style rounded" alt="{{image" />
+						<p class="text-left float-lg-none mt-2">
+							{{ obj.description }}
+						</p>
+						<div class="row align-items-center">
+							<div class="col-sm-2 offset-sm-6 col-lg-1 offset-lg-9 col-md-2 offset-md-7">
+								<img src="{{ obj.author.profile_image.url }}" class="img-fluid rounded-circle img-2-style mx-auto d-block " alt="placeholder user" />
+							</div>
+							<div class="col-sm-3 col-lg-2 col-md-3">
+								<h5 class="mg-md text-lg-left text-center float-lg-none">
+									{{ obj.author }}
+								</h5>
+								<h6 class="mg-md text-center text-lg-left float-sm-none">
+									Comments: {{ obj.comment_count }}
+								</h6>
+							</div>
+						</div>
+						<div class="text-center">
+							<a href="{{ obj.get_absolute_url }}" class="btn btn-d btn-lg">Read more</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+	</div>
+</div>
+<div class="bloc l-bloc" id="bloc-3">
+	<div class="container bloc-lg bloc-md-lg">
+		<div class="row">
+			{% for obj in latest %}
+				<div class="col-md-4">
+					<h5 class="mg-md text-center">
+						<i>{{ obj.timestamp|timesince }} ago</i>
+					</h5><a href="{{ obj.get_absolute_url }}"><img src="{{ obj.image.url }}" class="img-fluid mx-auto d-block img-rd-md" alt="placeholder image"></a>
+					<h5 class="mg-md text-center">
+						"{{ obj.title }}"
+					</h5>
+				</div>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+<!-- bloc-1 END -->
+{% endblock %}

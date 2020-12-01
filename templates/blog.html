@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- bloc-1 -->
+<div class="bloc d-bloc b-parallax full-width-bloc" id="bloc-1">
+    <div class="parallax bg-header">
+    </div>
+    <div class="container flexy bloc-xxl-lg bloc-xl-md bloc-md-sm bloc-sm">
+        <div class="row row-style no-gutters voffset voffset-xs">
+            <div class="col-lg-12">
+                <div class="card card-style">
+                    <div class="card-header">
+                        <h3 class="mg-clear text-lg-center text-sm-center float-none text-center">
+                            {{ post.title }}
+                        </h3>
+                        <h6 class="mg-clear text-lg-center text-sm-center float-none text-center">
+                            {{ post.timestamp }}
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <img src="{{ post.image.url }}" class="img-fluid mx-auto d-block img-style rounded mg-sm"
+                             alt="placeholder image"/>
+                        <p class="text-left">
+                            {{ post.body | safe }}
+                        <div class="row">
+                            <div class="col-lg-1 offset-lg-9">
+                                <img alt="placeholder user"
+                                     class="img-fluid rounded-circle mx-auto d-block img-2-style"
+                                     src="{{ post.author.profile_image.url }}"/>
+                            </div>
+                            <div class="col-lg-2">
+                                <h5 class="mg-md">
+                                    By {{ post.author }}
+                                </h5>
+                                <h6 class="mg-md">
+                                    comments : {{ post.comment_count }}
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="/" class="btn btn-d btn-lg">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if request.user.is_authenticated %}
+        <form method="POST" action="." class="commenting-form text-center">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <br>
+                    {{ form }}
+                </div>
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-warning">submit</button>
+                </div>
+            </div>
+        </form>
+        {% endif %)
+    </div>
+</div>
+{% endblock %}
+
